@@ -1,0 +1,136 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "background": "#9A348E",
+          "foreground": "#ffffff",
+          "leading_diamond": "\ue0c5",
+          "properties": {
+            "macos": "\uf179 ",
+            "ubuntu": "\uf31b ",
+            "windows": "\uf871 "
+          },
+          "style": "diamond",
+          "template": "\ue0c5 {{ if .WSL }}WSL {{ end }}{{.Icon}} ",
+          "type": "os"
+        },
+        {
+          "background": "#DA627D",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "\uf489 {{ .Name }}",
+          "type": "shell"
+        },
+        {
+          "background": "#FCA17D",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "\uf85a CPU: {{ round .PhysicalPercentUsed .Precision }}% | ",
+          "type": "sysinfo"
+        },
+        {
+          "background": "#91ddff",
+          "foreground": "#100e23",
+          "template": "MEM: {{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1000000000.0) }}/{{ (div .PhysicalTotalMemory 1000000000.0) }}GB \uf85a ",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "type": "sysinfo"
+        },
+        {
+          "background": "#95ffa4",
+          "foreground": "#193549",
+          
+          "style": "diamond",
+          "properties": {
+            "style": "roundrock",
+            "threshold": 0
+          },
+          "template": " {{ .FormattedMs }} ",
+          "trailing_diamond": "\uE0C0",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "background": "#17D7A0",
+          "foreground": "#011627",
+          "leading_diamond": "\ue0b2",
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "fetch_worktree_count": true
+          },
+          "style": "diamond",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "style": "plain",
+          "template": "\u256d\u2500",
+          "type": "text"
+        },
+        {
+          "properties": {
+            "time_format": "15:04"
+          },
+          "style": "plain",
+          "template": "🦄{{ .CurrentDate | date .Format }} |",
+          "type": "time"
+        },
+        {
+          "style": "plain",
+          "template": " \uf292 ",
+          "type": "root"
+        },
+        {
+          "properties": {
+            "folder_icon": "\uf07b ",
+            "folder_separator_icon": " \uf554 ",
+            "home_icon": "\uf7db "
+          },
+          "style": "plain",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "\u2570\u2500 ",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title_template": "{{ .Folder }}",
+  "version": 2
+}
